@@ -3,7 +3,8 @@
 // AUTHOR  :	Steaphan
 // VERSION :	1.0.0
 // DESCRIBE:	cocos2dx view for MFC 
-//				create view by MFC HWND
+//		create view by MFC HWND
+// GitHub  :    https://github.com/Steaphans/cocos2dx-Ex
 //******************************************************************
 #ifndef __CMYEGLVIEW_H__
 #define __CMYEGLVIEW_H__
