@@ -1,8 +1,9 @@
-﻿//******************************************************************
+//******************************************************************
 // FILENAME:	DataMgr.h
 // AUTHOR  :	Steaphan
 // VERSION :	1.0.0
 // DESCRIBE:	sqlite数据管理
+// GitHub  :    https://github.com/Steaphans/cocos2dx-Ex
 //******************************************************************
 #ifndef __DATAMGR_H_
 #define __DATAMGR_H_
