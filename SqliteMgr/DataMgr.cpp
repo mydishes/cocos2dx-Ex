@@ -1,4 +1,4 @@
-﻿#include "DataMgr.h"
+#include "DataMgr.h"
 #include "cocos2d.h"
 #include <string>
 #include <vector>
@@ -388,8 +388,3 @@ void CDataMgr::SetData(enDataType nType, SSqlData& data)
 		m_mKeyValue[nType] = data;
 	}
 }
-
-//std::string drop_sql_("drop  table record");
-//sqlite3_exec(splite2Data,drop_sql_.c_str(),NULL,NULL,NULL);
-//std::string delete_sql_("delete  from record");
-//update person set name = 'ssx' where id = 10
