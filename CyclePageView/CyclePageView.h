@@ -1,7 +1,9 @@
 //******************************************************************
-// 文件名:	CyclePageView.h
-// 版  本:	1.0
-// 描  述:	循环PageView
+// FILENAME:	CyclePageView.h
+// AUTHOR  :	Steaphan
+// VERSION :	1.0.0
+// DESCRIBE:	循环PageView
+// GitHub  :    https://github.com/Steaphans/cocos2dx-Ex
 //******************************************************************
 #ifndef __CyclePageView_H__
 #define __CyclePageView_H__
