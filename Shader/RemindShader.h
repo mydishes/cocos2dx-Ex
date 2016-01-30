@@ -1,8 +1,9 @@
-﻿//******************************************************************
+//******************************************************************
 // FILENAME:	RenderShader.h
 // AUTHOR  :	Steaphan
 // VERSION :	1.0.0
 // DESCRIBE:	残影特效
+// GitHub  :    https://github.com/Steaphans/cocos2dx-Ex
 //******************************************************************
 #ifndef _RemindShader_H__
 #define _RemindShader_H__ 
