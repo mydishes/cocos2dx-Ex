@@ -1,8 +1,9 @@
-﻿//******************************************************************
+//******************************************************************
 // FILENAME:	RenderShader.h
 // AUTHOR  :	Steaphan
 // VERSION :	1.0.0
 // DESCRIBE:	特效基类
+// GitHub  :    https://github.com/Steaphans/cocos2dx-Ex
 //******************************************************************
 #ifndef _RenderShader_H__
 #define _RenderShader_H__ 
