@@ -1,4 +1,4 @@
-﻿#include "RemindShader.h"
+#include "RemindShader.h"
 
 #define STRINGIFY(A)  #A
 const char* ccRemind_fsh = STRINGIFY(
@@ -44,7 +44,7 @@ bool RemindShader::init()
 }
 
 RemindShader::RemindShader(void)
-: m_nCurTexutreIndex(0), m_nRenderFrq(10), m_nRenderCount(0)
+: m_nCurTexutreIndex(0), m_nRenderFrq(3), m_nRenderCount(0)
 {
 	memset(m_pTextureArr, 0, REMIND_RENDER_COUNT);
 }
@@ -110,6 +110,7 @@ void RemindShader::Render()
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, m_nOldFBO);
+    GL::blendFunc(BlendFunc::ALPHA_PREMULTIPLIED.src, BlendFunc::ALPHA_PREMULTIPLIED.dst);
 	m_glprogram->use();
 	m_glprogram->setUniformsForBuiltins();
 
@@ -239,6 +240,18 @@ void RemindShader::draw(Renderer *renderer, const Mat4 &transform, uint32_t flag
 		}
 		m_nRenderCount = 0;	// 0 提示需要渲染进去
 	}
+    else
+    {
+        auto it = sRenderChild.begin();
+        while (it != sRenderChild.end())
+        {
+            if (Node* node = *it)
+            {
+                node->release();
+            }
+            ++it;
+        }
+    }
 	sRenderChild.clear();
 	//End will pop the current render group
 	end();
