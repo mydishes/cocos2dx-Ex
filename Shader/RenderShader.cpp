@@ -16,6 +16,13 @@ void main()
 }
 );
 
+// GL纹理坐标组
+const  GLfloat RenderShader::ccRenderTextcord[8] = {
+	0.0f, 1.0f,
+	1.0f, 1.0f,
+	0.0f, 0.0f,
+	1.0f, 0.0f,
+};
 RenderShader* RenderShader::create()
 {
 	auto node = new RenderShader();

@@ -10,13 +10,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-// GL纹理坐标组
-static const  GLfloat ccRenderTextcord[8] ={
-	0.0f, 1.0f,
-	1.0f, 1.0f,
-	0.0f, 0.0f,
-	1.0f, 0.0f,
-};
+
 class RenderShader : public Node
 {
 public:
@@ -50,6 +44,8 @@ protected:
 
 	virtual ~RenderShader(void);
  
+	
+	static const  GLfloat ccRenderTextcord[8]; // GL纹理坐标组
 
 	GLuint m_nFrameBuffer;			// 用于当前绘制的fbo
 

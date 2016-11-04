@@ -38,6 +38,10 @@ private:
 	int	  m_nRenderCount;		// 渲染间隔计数
 
 	int   m_nCurTexutreIndex;	// 当前渲染的纹理ID
+
+	Vec2  m_ptRenderPos[REMIND_RENDER_COUNT];
+
+	Vec2  m_ptCurRenderPos;
 };
 
 #endif

@@ -94,6 +94,9 @@ void RemindShader::onBegin()
 	if (m_nRenderCount == 0)
     {
 		glBindFramebuffer(GL_FRAMEBUFFER, m_nFrameBuffer);
+		// 基准坐标已中心层地图为准
+		//m_ptCurRenderPos = this->getParent()->getParent()->getParent()->getPosition();
+		m_ptRenderPos[m_nCurTexutreIndex] = m_ptCurRenderPos;
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_pTextureArr[m_nCurTexutreIndex], 0);
 		m_nCurTexutreIndex = m_nCurTexutreIndex + 1 < REMIND_RENDER_COUNT ? m_nCurTexutreIndex + 1 : 0;
 
@@ -108,12 +111,11 @@ void RemindShader::Render()
 	{
 		return;
 	}
-
 	glBindFramebuffer(GL_FRAMEBUFFER, m_nOldFBO);
-    GL::blendFunc(BlendFunc::ALPHA_PREMULTIPLIED.src, BlendFunc::ALPHA_PREMULTIPLIED.dst);
 	m_glprogram->use();
 	m_glprogram->setUniformsForBuiltins();
 
+	GL::blendFunc(BlendFunc::ALPHA_PREMULTIPLIED.src, BlendFunc::ALPHA_PREMULTIPLIED.dst);
 	Size sSize = Director::getInstance()->getVisibleSize();
 	float x = 0;
 	float y = 0;
@@ -129,7 +131,8 @@ void RemindShader::Render()
 	// 渲染存在m_pTextureArr队列里的拖影纹理到主场景
 	do
 	{    
-        Point delta = _position;// this->convertToWorldSpace(_position);
+		Vec2 delta = m_ptRenderPos[nCurIndex] - m_ptCurRenderPos;
+      //  Point delta = _position;// this->convertToWorldSpace(_position);
 		GLfloat vertices[] = {
 			x   - delta.x,y+ h - delta.y,
 			x+w - delta.x,y+ h - delta.y,
@@ -144,7 +147,6 @@ void RemindShader::Render()
 
 		GLuint glAlpha = m_glprogram->getUniformLocationForName("u_alpha");
 		glUniform1f(glAlpha, falpha);
-
 		glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
 		glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, 0, ccRenderTextcord);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -240,18 +242,18 @@ void RemindShader::draw(Renderer *renderer, const Mat4 &transform, uint32_t flag
 		}
 		m_nRenderCount = 0;	// 0 提示需要渲染进去
 	}
-    else
-    {
-        auto it = sRenderChild.begin();
-        while (it != sRenderChild.end())
-        {
-            if (Node* node = *it)
-            {
-                node->release();
-            }
-            ++it;
-        }
-    }
+	else
+	{
+		auto it = sRenderChild.begin();
+		while (it != sRenderChild.end())
+		{
+			if (Node* node = *it)
+			{
+				node->release();
+			}
+			++it;
+		}
+	}
 	sRenderChild.clear();
 	//End will pop the current render group
 	end();
